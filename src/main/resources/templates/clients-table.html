@@ -1,0 +1,36 @@
+<html>
+<head>
+
+<link th:href="@{/styles/main.css}" rel="stylesheet" />
+
+</head>
+
+<body>
+
+	<table>
+		<thead>
+			<tr>
+				<th>First Name</th>
+				<th>Last Name</th>
+				<th>Phone Number</th>
+				<th>Email</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:if="${clients.empty}">
+				<td colspan="2">No Client Available</td>
+			</tr>
+			<tr th:each="client : ${clients}">
+				<td><span th:text="${client.firstName}"> First Name </span></td>
+				<td><span th:text="${client.lastName}"> Last Name </span></td>
+				<td><span th:text="${client.phoneNumber}"> Phone Number</span></td>
+				<td><span th:text="${client.email}"> Email </span></td>
+			</tr>
+		</tbody>
+	</table>
+
+	<hr>
+	<a th:href="@{'addClient/'}">Add Client</a>
+
+</body>
+</html>

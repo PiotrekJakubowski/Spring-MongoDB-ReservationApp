@@ -1,0 +1,21 @@
+<html>
+<head>
+</head>
+
+<body>
+	<h3>Save Client</h3>
+		<form action="#" th:action="@{/client/save}" th:object="${client}" method="POST">
+
+		<input type="hidden" th:field="*{id}" /> 
+		<input type="text" th:field="*{firstName}" placeholder="First name"/> 
+		<input type="text" th:field="*{lastName}" placeholder="Last name"/> 
+		<input type="text" th:field="*{email}" placeholder="Email"/> 
+		<input type="text" th:field="*{phoneNumber}" placeholder="Phone Number"/>
+
+		<button type="submit">Save</button>
+
+	</form>
+	<hr>
+	<a th:href="@{/client/list}">Back to Client List</a>
+</body>
+</html>
