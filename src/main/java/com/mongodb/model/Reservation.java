@@ -2,24 +2,24 @@ package com.mongodb.model;
 
 public class Reservation {
 
-	private String court;
+	private Court court;
 	private String date;
 
 	public Reservation() {
 
 	}
 
-	public Reservation(String court, String date) {
+	public Reservation(Court court, String date) {
 		super();
 		this.court = court;
 		this.date = date;
 	}
 
-	public String getCourt() {
+	public Court getCourt() {
 		return court;
 	}
 
-	public void setCourt(String court) {
+	public void setCourt(Court court) {
 		this.court = court;
 	}
 

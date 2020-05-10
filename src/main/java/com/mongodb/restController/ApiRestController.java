@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mongodb.model.Client;
+import com.mongodb.model.Court;
 import com.mongodb.model.Reservation;
 import com.mongodb.repository.ClientReservationRespository;
 
@@ -30,10 +31,13 @@ public class ApiRestController {
 	public ResponseEntity<Client> createClientReservation(@RequestBody Client reqClient) {
 		System.out.println("createClientReservation function -> body parameters: " + reqClient.getFirstName() + " | "
 				+ reqClient.getLastName() + " | " + reqClient.getEmail() + " | " + reqClient.getPhoneNumber() + " | "
-				+ reqClient.getReservation().getCourt() + " | " + reqClient.getReservation().getDate());
+				+ reqClient.getReservation().getCourt().getType() + " | "
+				+ reqClient.getReservation().getCourt().getSector() + " | " + reqClient.getReservation().getDate());
+
 		try {
-			Reservation reservation = new Reservation(reqClient.getReservation().getCourt(),
-					reqClient.getReservation().getDate());
+			Court court = new Court(reqClient.getReservation().getCourt().getType(),
+					reqClient.getReservation().getCourt().getSector());
+			Reservation reservation = new Reservation(court, reqClient.getReservation().getDate());
 			Client client = new Client(reqClient.getFirstName(), reqClient.getLastName(), reqClient.getPhoneNumber(),
 					reqClient.getEmail(), reservation);
 
@@ -43,6 +47,7 @@ public class ApiRestController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
 		}
+
 	}
 
 	@GetMapping("/clientReservation")
@@ -81,7 +86,7 @@ public class ApiRestController {
 				_client.setEmail(client.getEmail());
 			if (client.getPhoneNumber() != null)
 				_client.setPhoneNumber(client.getPhoneNumber());
-			if (client.getReservation().getCourt() != null)
+			if (client.getReservation().getCourt().getType() != null)
 				_reservation.setCourt(client.getReservation().getCourt());
 			if (client.getReservation().getDate() != null)
 				_reservation.setDate(client.getReservation().getDate());
