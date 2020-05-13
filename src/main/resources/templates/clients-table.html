@@ -10,10 +10,12 @@
 	<table>
 		<thead>
 			<tr>
+				<th>ID</th>
 				<th>First Name</th>
 				<th>Last Name</th>
-				<th>Phone Number</th>
 				<th>Email</th>
+				<th>Phone Number</th>
+				<th>Client Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -21,10 +23,18 @@
 				<td colspan="2">No Client Available</td>
 			</tr>
 			<tr th:each="client : ${clients}">
+				<td><span th:text="${client.id}"> First Name </span></td>
 				<td><span th:text="${client.firstName}"> First Name </span></td>
 				<td><span th:text="${client.lastName}"> Last Name </span></td>
-				<td><span th:text="${client.phoneNumber}"> Phone Number</span></td>
-				<td><span th:text="${client.email}"> Email </span></td>
+				<td><span th:text="${client.email}"> Phone Number</span></td>
+				<td><span th:text="${client.phoneNumber}"> Email </span></td>
+				<td>
+				<a th:href="@{'/web/update/' + ${client.id}}">Edit</a> 
+				| 
+				<a th:href="@{'/web/delete/' + ${client.id}}" onclick="return confirm('Are you sure you want to delete the reservation?');"> Delete</a>
+                -----> 
+                <a th:href="@{'/web/clientReservations/' + ${client.id}}">Show Client Reservation</a>
+                </td>
 			</tr>
 		</tbody>
 	</table>

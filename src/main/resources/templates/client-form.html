@@ -4,14 +4,18 @@
 
 <body>
 	<h3>Save Client</h3>
-		<form action="#" th:action="@{/client/save}" th:object="${client}" method="POST">
+		<form action="#" th:action="@{/web/clientSave}" th:object="${client}" method="POST">
 
 		<input type="hidden" th:field="*{id}" /> 
-		<input type="text" th:field="*{firstName}" placeholder="First name"/> 
-		<input type="text" th:field="*{lastName}" placeholder="Last name"/> 
-		<input type="text" th:field="*{email}" placeholder="Email"/> 
+		<br>
+		<input type="text" th:field="*{firstName}" placeholder="First name"/>
+		<br> 
+		<input type="text" th:field="*{lastName}" placeholder="Last name"/>
+		<br> 
+		<input type="text" th:field="*{email}" placeholder="Email"/>
+		<br> 
 		<input type="text" th:field="*{phoneNumber}" placeholder="Phone Number"/>
-
+		<br>
 		<button type="submit">Save</button>
 
 	</form>

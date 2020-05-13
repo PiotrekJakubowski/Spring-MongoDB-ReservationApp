@@ -1,9 +1,12 @@
 package com.mongodb.model;
 
+import java.util.List;
+
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "clientreservations")
+@Document(collection = "clients")
 public class Client {
 	@Id
 	private String id;
@@ -12,13 +15,14 @@ public class Client {
 	private String lastName;
 	private String phoneNumber;
 	private String email;
-	private Reservation reservation;
+	@DBRef
+	private List <Reservation> reservation;
 	
 	public Client() {
 
 	}
 
-	public Client(String firstName, String lastName, String phoneNumber, String email, Reservation reservation) {
+	public Client(String firstName, String lastName, String phoneNumber, String email, List <Reservation> reservation) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
@@ -67,11 +71,11 @@ public class Client {
 		this.email = email;
 	}
 
-	public Reservation getReservation() {
+	public List <Reservation> getReservation() {
 		return reservation;
 	}
 
-	public void setReservation(Reservation reservation) {
+	public void setReservation(List <Reservation> reservation) {
 		this.reservation = reservation;
 	}
 

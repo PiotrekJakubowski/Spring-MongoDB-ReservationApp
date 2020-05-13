@@ -1,56 +1,39 @@
 package com.mongodb.restController;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.mongodb.model.Client;
-import com.mongodb.model.Court;
-import com.mongodb.model.Reservation;
-import com.mongodb.repository.ClientReservationRespository;
 
 @RestController
 @RequestMapping("/api")
 public class ApiRestController {
 
-	@Autowired
-	ClientReservationRespository clientReservationRepository;
+	//@Autowired
+	//ClientReservationRespository clientReservationRepository;
 
-	@PostMapping("/clientReservation")
-	public ResponseEntity<Client> createClientReservation(@RequestBody Client reqClient) {
-		System.out.println("createClientReservation function -> body parameters: " + reqClient.getFirstName() + " | "
-				+ reqClient.getLastName() + " | " + reqClient.getEmail() + " | " + reqClient.getPhoneNumber() + " | "
-				+ reqClient.getReservation().getCourt().getType() + " | "
-				+ reqClient.getReservation().getCourt().getSector() + " | " + reqClient.getReservation().getDate());
+//	@PostMapping("/clientReservation")
+//	public ResponseEntity<Client> createClientReservation(@RequestBody Client reqClient) {
+//		System.out.println("createClientReservation function -> body parameters: " + reqClient.getFirstName() + " | "
+//				+ reqClient.getLastName() + " | " + reqClient.getEmail() + " | " + reqClient.getPhoneNumber() + " | "
+//				+ reqClient.getReservation().getCourt().getType() + " | "
+//				+ reqClient.getReservation().getCourt().getSector() + " | " + reqClient.getReservation().getDate());
+//
+//		try {
+//			Court court = new Court(reqClient.getReservation().getCourt().getType(),
+//					reqClient.getReservation().getCourt().getSector());
+//			Reservation reservation = new Reservation(court, reqClient.getReservation().getDate());
+//			Client client = new Client(reqClient.getFirstName(), reqClient.getLastName(), reqClient.getPhoneNumber(),
+//					reqClient.getEmail(), reservation);
+//
+//			Client saveClient = clientReservationRepository.save(client);
+//
+//			return new ResponseEntity<>(saveClient, HttpStatus.CREATED);
+//		} catch (Exception e) {
+//			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+//		}
+//
+//	}
 
-		try {
-			Court court = new Court(reqClient.getReservation().getCourt().getType(),
-					reqClient.getReservation().getCourt().getSector());
-			Reservation reservation = new Reservation(court, reqClient.getReservation().getDate());
-			Client client = new Client(reqClient.getFirstName(), reqClient.getLastName(), reqClient.getPhoneNumber(),
-					reqClient.getEmail(), reservation);
-
-			Client saveClient = clientReservationRepository.save(client);
-
-			return new ResponseEntity<>(saveClient, HttpStatus.CREATED);
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
-		}
-
-	}
-
-	@GetMapping("/clientReservation")
+/*	@GetMapping("/clientReservation")
 	public List<Client> getAllClientReservations() {
 
 		List<Client> clients = this.clientReservationRepository.findAll();
@@ -116,6 +99,6 @@ public class ApiRestController {
 		} catch (Exception e) {
 			return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
 		}
-	}
+	}*/
 
 }

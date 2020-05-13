@@ -1,25 +1,40 @@
 package com.mongodb.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "reservations")
 public class Reservation {
 
-	private Court court;
+	@Id
+	private String id;
+	
+	private String court;
 	private String date;
 
 	public Reservation() {
 
 	}
 
-	public Reservation(Court court, String date) {
+	public Reservation(String court, String date) {
 		super();
 		this.court = court;
 		this.date = date;
 	}
+	
+	public String getId() {
+		return id;
+	}
 
-	public Court getCourt() {
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getCourt() {
 		return court;
 	}
 
-	public void setCourt(Court court) {
+	public void setCourt(String court) {
 		this.court = court;
 	}
 
@@ -33,7 +48,7 @@ public class Reservation {
 
 	@Override
 	public String toString() {
-		return "Reservation [court=" + court + ", date=" + date + "]";
+		return "Reservation [id=" +id + ", court=" + court + ", date=" + date + "]";
 	}
 
 }

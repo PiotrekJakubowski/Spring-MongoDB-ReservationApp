@@ -1,39 +1,45 @@
 <html>
 <head>
+
+<style>
+table, th, td {
+	border: 1px solid black;
+}
+</style>
+
 </head>
 
 <body>
 
+	<tr th:each="clientId: ${clientId}">
+		ClientId: 
+		<td><span th:text="${clientId}"> Client ID </span></td>
 	<table>
 		<thead>
-			<tr th:if="${!reservations.empty}">
-				<th>Id</th>
-				<th>Court Nr.</th>
-				<th>Date</th>
-				<th>Client Email</th>
-			</tr>
+			<th>Id</th>
+			<th>Court Nr.</th>
+			<th>Date</th>
+			<th>Client Email</th>
 		</thead>
 		<tbody>
-			<tr th:if="${reservations.empty}">
-				<td colspan="2">No reservation found.</td>
-			</tr>
 			<tr th:each="reservation: ${reservations}">
 				<td><span th:text="${reservation.id}"> Id </span></td>
 				<td><span th:text="${reservation.court}"> Court Nr. </span></td>
 				<td><span th:text="${reservation.date}"> Date </span></td>
-				<td><span th:text="${reservation.client.email}"> Client Email </span></td>
-				<td>
-                <a th:href="@{'/reservation/updateReservation/' + ${reservation.id}}">Edit</a>
-                |
-                <a th:href="@{'/reservation/deleteReservation/' + ${reservation.id}}">Delete</a>
-              	</td>
+				<td><a
+					th:href="@{'/web/updateReservation/' + ${reservation.id} + '/' + ${clientId}}">Edit</a>
+					| <a
+					th:href="@{'/web/deleteReservation/' + ${reservation.id}}">Delete</a>
+				</td>
 			</tr>
 		</tbody>
 	</table>
+	</tr>
 	<hr>
-	<a th:href="@{'/reservation/addNewReservation/' + ${clientId}}">Add Reservation</a>
+	<a th:href="@{'/web/addNewReservation/' + ${clientId}}">Add
+		Reservation</a>
 	<hr>
-	<a th:href="@{'/client/list'}">Go Back To Clients List</a>
+	<a th:href="@{'/web/client'}">Go Back To Clients List</a>
 
 </body>
 </html>
